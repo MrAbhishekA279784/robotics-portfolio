@@ -1,0 +1,251 @@
+/* Toll Jet - Futuristic Robotics Design System */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  :root {
+    /* Deep space background */
+    --background: 220 45% 7%;
+    --foreground: 0 0% 100%;
+
+    /* Cards with glassmorphism */
+    --card: 220 40% 10%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 220 40% 12%;
+    --popover-foreground: 0 0% 100%;
+
+    /* Electric cyan primary */
+    --primary: 187 100% 50%;
+    --primary-foreground: 220 45% 7%;
+
+    /* Purple secondary */
+    --secondary: 258 100% 65%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Muted steel blue */
+    --muted: 200 10% 25%;
+    --muted-foreground: 200 18% 72%;
+
+    /* Neon green accent */
+    --accent: 156 100% 50%;
+    --accent-foreground: 220 45% 7%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 30% 18%;
+    --input: 220 30% 15%;
+    --ring: 187 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Custom gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(187 100% 50%), hsl(258 100% 65%));
+    --gradient-accent: linear-gradient(135deg, hsl(156 100% 50%), hsl(187 100% 50%));
+    --gradient-glow: radial-gradient(ellipse at center, hsl(187 100% 50% / 0.15) 0%, transparent 70%);
+    --gradient-card: linear-gradient(135deg, hsl(220 40% 12% / 0.8), hsl(220 40% 8% / 0.9));
+
+    /* Glassmorphism */
+    --glass-bg: hsl(220 40% 12% / 0.6);
+    --glass-border: hsl(187 100% 50% / 0.2);
+    --glass-blur: 20px;
+
+    /* Glow effects */
+    --glow-primary: 0 0 20px hsl(187 100% 50% / 0.5), 0 0 40px hsl(187 100% 50% / 0.3);
+    --glow-secondary: 0 0 20px hsl(258 100% 65% / 0.5), 0 0 40px hsl(258 100% 65% / 0.3);
+    --glow-accent: 0 0 20px hsl(156 100% 50% / 0.5), 0 0 40px hsl(156 100% 50% / 0.3);
+
+    /* Shadows */
+    --shadow-elevated: 0 25px 50px -12px hsl(220 45% 3% / 0.8);
+    --shadow-glow: 0 4px 30px hsl(187 100% 50% / 0.15);
+
+    --sidebar-background: 220 40% 8%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 187 100% 50%;
+    --sidebar-primary-foreground: 220 45% 7%;
+    --sidebar-accent: 220 30% 15%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 220 30% 18%;
+    --sidebar-ring: 187 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Orbitron', sans-serif;
+  }
+}
+
+@layer components {
+  /* Glassmorphism panel */
+  .glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+  }
+
+  /* Neon text glow */
+  .text-glow-primary {
+    text-shadow: 0 0 10px hsl(187 100% 50% / 0.8), 0 0 30px hsl(187 100% 50% / 0.4);
+  }
+
+  .text-glow-secondary {
+    text-shadow: 0 0 10px hsl(258 100% 65% / 0.8), 0 0 30px hsl(258 100% 65% / 0.4);
+  }
+
+  .text-glow-accent {
+    text-shadow: 0 0 10px hsl(156 100% 50% / 0.8), 0 0 30px hsl(156 100% 50% / 0.4);
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Button glow effect */
+  .btn-glow {
+    box-shadow: var(--glow-primary);
+    transition: all 0.3s ease;
+  }
+
+  .btn-glow:hover {
+    box-shadow: 0 0 30px hsl(187 100% 50% / 0.7), 0 0 60px hsl(187 100% 50% / 0.4);
+    transform: translateY(-2px);
+  }
+
+  /* Animated border */
+  .border-glow {
+    position: relative;
+  }
+
+  .border-glow::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: var(--gradient-primary);
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0.5;
+    filter: blur(8px);
+    transition: opacity 0.3s ease;
+  }
+
+  .border-glow:hover::before {
+    opacity: 1;
+  }
+
+  /* Circuit pattern background */
+  .circuit-bg {
+    background-image: 
+      linear-gradient(90deg, hsl(187 100% 50% / 0.03) 1px, transparent 1px),
+      linear-gradient(hsl(187 100% 50% / 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  /* Floating animation */
+  .float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* Pulse glow */
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  /* Scan line effect */
+  .scan-lines::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      hsl(187 100% 50% / 0.03) 2px,
+      hsl(187 100% 50% / 0.03) 4px
+    );
+    pointer-events: none;
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 0.8;
+    filter: brightness(1.2);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(220 40% 8%);
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(187 100% 50% / 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(187 100% 50% / 0.5);
+}
